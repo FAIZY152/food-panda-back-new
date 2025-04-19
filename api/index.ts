@@ -17,7 +17,7 @@ const app = express();
 const PORT = process.env.PORT || 5200;
 
 
-const allowedOrigins = ["https://dep-app-taupe.vercel.app"];
+const allowedOrigins = ['https://dep-app-taupe.vercel.app'];
 
 
 app.use(
