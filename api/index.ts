@@ -17,7 +17,7 @@ const app = express();
 const PORT = process.env.PORT || 5200;
 
 
-const allowedOrigins = ["https://dep-app-taupe.vercel.app/"];
+const allowedOrigins = ["https://dep-app-taupe.vercel.app"];
 
 
 app.use(
@@ -36,7 +36,7 @@ app.use(
 );
 
 app.options("*", (req, res) => {
-  res.header("Access-Control-Allow-Origin", "https://dep-app-taupe.vercel.app/");
+  res.header("Access-Control-Allow-Origin", "https://dep-app-taupe.vercel.app");
   res.header("Access-Control-Allow-Credentials", "true");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
@@ -48,7 +48,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 
-// ✅ 5️⃣ Sample Route to Check CORS
 app.get("/api/v1/auth/cors", (req, res) => {
   res.json({ message: "CORS is working!" });
 });
@@ -65,15 +64,13 @@ app.get("/api/status", async (req, res) => {
 
   res.status(200).json({ status: "ready" });
 });
-// ✅ 6️⃣ Define API Routes
 app.use("/api/v1/auth", userRoute);
 app.use("/api/v1/resturent", resturentRoute);
 app.use("/api/v1/menu", menuRoute);
 app.use("/api/v1/order", orderRoute);
 
-// ✅ 7️⃣ Global Middleware to Ensure CORS Headers are Present in All Responses
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://foodpandalike.vercel.app");
+  res.header("Access-Control-Allow-Origin", "https://dep-app-taupe.vercel.app");
   res.header("Access-Control-Allow-Credentials", "true");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
