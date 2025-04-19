@@ -19,12 +19,20 @@ const PORT = process.env.PORT || 5200;
 
 const allowedOrigins = ['https://dep-app-taupe.vercel.app'];
 
-app.use(cors({
-  origin: allowedOrigins,
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
+app.use(
+   cors({
+     origin: (origin, callback) => {
+       if (!origin || allowedOrigins.includes(origin)) {
+         callback(null, true);
+       } else {
+         callback(new Error("Not allowed by CORS"));
+       }
+     },
+     credentials: true,
+     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+     allowedHeaders: ["Content-Type", "Authorization"],
+   })
+ );
 
 app.options("*", (req, res) => {
   res.header("Access-Control-Allow-Origin", "https://dep-app-taupe.vercel.app");
