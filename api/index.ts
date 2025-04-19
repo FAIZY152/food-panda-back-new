@@ -10,7 +10,6 @@ import connectDB from "./utils/DB";
 import dotenv from "dotenv";
 dotenv.config();
 
-// Connect to database
 connectDB();
 
 const app = express();
@@ -54,7 +53,6 @@ let backendReady = false;
 app.get("/api/status", async (req, res) => {
   if (!backendReady) {
     console.log("⏳ Warming up backend...");
-    // Simulate warm-up (e.g. connect to DB, load models, etc.)
     await new Promise((resolve) => setTimeout(resolve, 3000)); // 3 sec delay
     backendReady = true;
     console.log("✅ Backend is ready!");
