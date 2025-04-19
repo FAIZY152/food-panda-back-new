@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "sapi/index.ts",
+      "src": "api/index.ts",
       "use": "@vercel/node"
     }
   ],
@@ -12,5 +12,3 @@
       "dest": "api/index.ts"
     }
   ],
- 
-}
